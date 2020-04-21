@@ -16,7 +16,7 @@ RUN git clone https://github.com/ngtcp2/nghttp3
 WORKDIR nghttp3
 RUN autoreconf -i
 RUN ./configure --prefix=/usr/local --enable-lib-only
-RUN make -j `nproc`
+RUN make -j `lscpu | awk /"^Core"/'{print$NF}'`
 RUN make install
 
 # ngtcp2
